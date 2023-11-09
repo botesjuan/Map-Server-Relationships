@@ -7,8 +7,8 @@
 >PowerShell script to list all computers in Active Directory contain certain string:
 
 ```powershell
-Get-ADComputer -Filter * | Where-Object {$_.Name -like "*edw*"} | Select -Property Name | Out-File EDW-computers-input.txt
-```
+Get-ADComputer -Filter * | Where-Object {$_.Name -like "*edw*"} | FT Name -AutoSize | Out-File EDW-computers-input.txt
+```  
 
 >Cleanup the output and use sysinternals tool psexec to execute netstat to list all computers with active connections to the remote targets.
 >This will provide output file list all connections to each server in the input list.
