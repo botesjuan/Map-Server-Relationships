@@ -21,7 +21,15 @@ dev-edwserver02
 tst-edwserver03
 ```
 
->Use poweshell to validate the IP address, and then inport into Microsoft excel to cleanup the data and columns:
+>Use input list to get the netstat output using below psexec:
+
+```
+PsExec.exe @EDW-computers-input.txt netstat -af >EDW-output-netstat-results.txt
+```  
+
+>Cleanup the `EDW-output-netstat-results.txt` by removing duplicates and making a column of DNS server names to use as input file `\EDW-computers-input.txt` to validate IP address.
+
+>Use poweshell to validate the IP address, and then open output into Microsoft Excel to cleanup the data and columns:
 
 ```powershell
 $computers = Get-Content -Path "D:\scripts\EDW-computers-input.txt"
