@@ -39,3 +39,11 @@ foreach ($computer in $computers) {
     Test-Connection $computer -count 1 -ErrorAction SilentlyContinue | FT Address,IPV4Address -hidetableheaders | Out-File "c:\users\$env:username\Documents\EDW-ip-addresses.txt" -Append
 }
 ```  
+
+## Attack Surface  
+
+>The above give view of the attack surface based on the discovered system connections.
+
+![/attack%20surface.PNG](/attack%20surface.PNG)  
+
+----  
