@@ -4,10 +4,14 @@
 
 >Run from a windows domain joined computer or using compromised domain credentials.
 
->PowerShell script to list all computers in Active Directory contain certain string:
+>PowerShell script to list all computers servers in Active Directory contain certain string value in their name:  
 
 ```powershell
-Get-ADComputer -Filter * | Where-Object {$_.Name -like "*edw*"} | FT Name -AutoSize | Out-File EDW-computers-input.txt
+Get-ADComputer -Filter * -Properties LastLogonDate | 
+    Where-Object { $_.Name -like "*sas*" } | 
+    Select-Object Name, LastLogonDate | 
+    Export-Csv -Path "D:\Support\servers\sas-servers-list.csv" -NoTypeInformation -Force
+
 ```  
 
 >Cleanup the output and use sysinternals tool psexec to execute netstat to list all computers with active connections to the remote targets.
